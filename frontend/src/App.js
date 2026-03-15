@@ -462,7 +462,7 @@ const HeroSection = () => {
             transition={{ duration: 0.8, delay: 0.4 }}
             className="font-outfit text-base md:text-lg text-[#A1A1AA] max-w-2xl mx-auto leading-relaxed mt-6"
           >
-            <span className="text-[#EDEDED] font-medium">Laboratorio de Innovación Técnica y Experiencias Sensoriales.</span>
+            <span className="text-[#EDEDED] font-medium">Tech Lab.</span> Laboratorio de Innovación Técnica y Experiencias Sensoriales.
             <br />
             Diseñamos sistemas y experiencias que elevan el desempeño técnico y humano, 
             integrando tecnología, creatividad y estrategia.
