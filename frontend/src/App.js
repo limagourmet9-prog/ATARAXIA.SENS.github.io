@@ -454,19 +454,28 @@ const HeroSection = () => {
             className="font-syne text-5xl sm:text-6xl lg:text-8xl font-extrabold leading-[1.1] mt-6"
           >
             <span className="gradient-text">ATARAXIA SENSS</span>
-            <br />
-            <span className="text-[#EDEDED]">TECH LAB</span>
           </motion.h1>
 
           <motion.p
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
-            className="font-outfit text-lg md:text-xl text-[#A1A1AA] max-w-2xl mx-auto leading-relaxed mt-8"
+            className="font-outfit text-base md:text-lg text-[#A1A1AA] max-w-2xl mx-auto leading-relaxed mt-6"
           >
-            Diseñamos sistemas y experiencias que elevan el desempeño técnico y humano.
-            <span className="text-gold block mt-2 font-syne text-2xl">Precision. Experience. Evolution.</span>
+            <span className="text-[#EDEDED] font-medium">Laboratorio de Innovación Técnica y Experiencias Sensoriales.</span>
+            <br />
+            Diseñamos sistemas y experiencias que elevan el desempeño técnico y humano, 
+            integrando tecnología, creatividad y estrategia.
           </motion.p>
+          
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.5 }}
+            className="mt-6"
+          >
+            <span className="text-gold font-syne text-xl md:text-2xl tracking-wide">Precision. Experience. Evolution.</span>
+          </motion.div>
 
           <motion.div
             initial={{ opacity: 0, y: 30 }}
