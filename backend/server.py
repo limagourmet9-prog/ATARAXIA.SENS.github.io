@@ -66,6 +66,28 @@ async def get_status_checks():
     
     return status_checks
 
+# Contact Form Model
+class ContactForm(BaseModel):
+    nombre: str
+    email: str
+    servicio: str
+    mensaje: str
+
+@api_router.post("/contact")
+async def contact_form(form_data: ContactForm):
+    """Handle contact form submissions"""
+    contact_dict = form_data.model_dump()
+    contact_dict['timestamp'] = datetime.now(timezone.utc).isoformat()
+    contact_dict['id'] = str(uuid.uuid4())
+    
+    # Store in database
+    await db.contacts.insert_one(contact_dict)
+    
+    return {
+        "status": "success",
+        "message": "Gracias por tu mensaje. Te contactaremos pronto."
+    }
+
 # Include the router in the main app
 app.include_router(api_router)
 
