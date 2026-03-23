@@ -8,7 +8,7 @@ Visita: **[ataraxia-vero.com](https://marroquin97.github.io/ATARAXIA-SENSORIAL-/
 
 ## 🔥 La Alquimia de la Experiencia
 
-ATARAXIA Vero Tech Lab - Laboratorio de innovación técnica y experiencias sensoriales.
+ATARAXIA Vero - Laboratorio de innovación técnica y experiencias sensoriales.
 
 **Fundado por:** Brian Marroquín Ambriz
 
