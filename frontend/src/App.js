@@ -1,7 +1,6 @@
 import { useEffect, useState, useRef } from "react";
 import "@/App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import axios from "axios";
 import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
 import { 
   Cpu, 
@@ -35,8 +34,8 @@ import {
 } from "@/components/ui/select";
 import { Toaster, toast } from "sonner";
 
-const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
-const API = `${BACKEND_URL}/api`;
+const CONTACT_EMAIL = "habilidaddm@gmail.com";
+const CONTACT_WHATSAPP = "524591162796";
 
 // Brian's Real Images
 const BRIAN_IMAGES = {
@@ -134,6 +133,54 @@ const ASSETS = {
   experience: "https://images.unsplash.com/photo-1569402766266-9c58bfe2f4ed?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjY2NzN8MHwxfHNlYXJjaHwyfHxtb2xlY3VsYXIlMjBjb2NrdGFpbCUyMHNtb2tlJTIwbHV4dXJ5JTIwYmFyJTIwZGFyayUyMGJhY2tncm91bmR8ZW58MHx8fHwxNzcyOTY3MTUxfDA&ixlib=rb-4.1.0&q=85",
   academy: "https://images.pexels.com/photos/8369249/pexels-photo-8369249.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
   founder: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=800&q=80"
+};
+
+const formatServiceLabel = (service) => {
+  const labels = {
+    systems: "ATARAXIA Vero SYSTEMS",
+    experience: "ATARAXIA Vero EXPERIENCE",
+    academy: "ATARAXIA Vero ACADEMY",
+    consulting: "Consultoría General",
+  };
+
+  return labels[service] || "Servicio no especificado";
+};
+
+const buildContactSummary = (formData) => {
+  const serviceLabel = formatServiceLabel(formData.service);
+
+  return [
+    "Nuevo mensaje desde el sitio de ATARAXIA Vero",
+    "",
+    `Nombre: ${formData.name}`,
+    `Email: ${formData.email}`,
+    `Teléfono: ${formData.phone || "No proporcionado"}`,
+    `Servicio de interés: ${serviceLabel}`,
+    "",
+    "Mensaje:",
+    formData.message,
+  ].join("\n");
+};
+
+const buildWhatsAppUrl = (formData) => {
+  const message = [
+    "Hola Brian, envié un formulario desde ATARAXIA Vero.",
+    "",
+    `Nombre: ${formData.name}`,
+    `Email: ${formData.email}`,
+    `Teléfono: ${formData.phone || "No proporcionado"}`,
+    `Servicio: ${formatServiceLabel(formData.service)}`,
+    "",
+    `Mensaje: ${formData.message}`,
+  ].join("\n");
+
+  return `https://wa.me/${CONTACT_WHATSAPP}?text=${encodeURIComponent(message)}`;
+};
+
+const buildMailtoUrl = (formData) => {
+  const subject = `Nuevo contacto desde ATARAXIA Vero: ${formData.name}`;
+  const body = buildContactSummary(formData);
+  return `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
 };
 
 // Animated Logo Component
@@ -1642,11 +1689,16 @@ const ContactSection = () => {
     setIsSubmitting(true);
 
     try {
-      await axios.post(`${API}/contact`, formData);
-      toast.success("Mensaje enviado exitosamente. Te contactaremos pronto.");
+      const mailtoUrl = buildMailtoUrl(formData);
+      const whatsappUrl = buildWhatsAppUrl(formData);
+
+      window.open(whatsappUrl, "_blank", "noopener,noreferrer");
+      window.location.href = mailtoUrl;
+
+      toast.success("Se abrieron WhatsApp y correo para continuar el contacto.");
       setFormData({ name: "", email: "", phone: "", service: "", message: "" });
     } catch (error) {
-      toast.error("Error al enviar el mensaje. Por favor intenta nuevamente.");
+      toast.error("No se pudo abrir el contacto. Intenta nuevamente.");
       console.error("Contact form error:", error);
     } finally {
       setIsSubmitting(false);
@@ -1677,9 +1729,23 @@ const ContactSection = () => {
 
             {/* Contact Methods */}
             <div className="space-y-6">
+              {/* Email */}
+              <a
+                href={`mailto:${CONTACT_EMAIL}`}
+                className="flex items-center gap-4 group"
+              >
+                <div className="service-icon group-hover:bg-gold group-hover:border-gold transition-all">
+                  <Mail className="text-gold group-hover:text-[#050505]" size={24} />
+                </div>
+                <div>
+                  <p className="font-outfit text-sm text-[#52525B]">Correo directo</p>
+                  <p className="font-outfit text-[#EDEDED] group-hover:text-gold transition-colors">{CONTACT_EMAIL}</p>
+                </div>
+              </a>
+
               {/* WhatsApp Personal */}
               <a 
-                href="https://wa.me/5214591162796"
+                href={`https://wa.me/${CONTACT_WHATSAPP}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-4 group"
@@ -1753,8 +1819,8 @@ const ContactSection = () => {
               </div>
             </div>
 
-            {/* Social Links Row */}
-            <div className="flex gap-4 pt-4">
+              {/* Social Links Row */}
+              <div className="flex gap-4 pt-4">
               <a
                 href="https://instagram.com/Marroquin7"
                 target="_blank"
@@ -1772,7 +1838,7 @@ const ContactSection = () => {
                 <Facebook size={20} className="text-gold" />
               </a>
               <a
-                href="https://wa.me/5214591162796"
+                href={`https://wa.me/${CONTACT_WHATSAPP}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-12 h-12 rounded-full bg-[#121212] border border-[rgba(255,255,255,0.08)] flex items-center justify-center hover:border-gold hover:bg-gold/10 transition-all"
@@ -1871,14 +1937,18 @@ const ContactSection = () => {
                 data-testid="submit-contact-btn"
               >
                 {isSubmitting ? (
-                  "Enviando..."
+                  "Abriendo contacto..."
                 ) : (
                   <>
-                    Enviar Mensaje
+                    Enviar por WhatsApp y correo
                     <Send size={18} />
                   </>
                 )}
               </Button>
+
+              <p className="font-outfit text-sm text-[#A1A1AA] text-center">
+                El formulario abrirá WhatsApp con tu mensaje listo y también tu correo para que envíes el contacto.
+              </p>
             </form>
           </motion.div>
         </div>
@@ -2002,7 +2072,7 @@ const Footer = () => {
 
 // WhatsApp Button
 const WhatsAppButton = () => {
-  const whatsappUrl = "https://wa.me/5214591162796?text=Hola%20Brian,%20me%20interesa%20conocer%20más%20sobre%20los%20servicios%20de%20ATARAXIA%20SENSS%20TECH%20LAB.";
+  const whatsappUrl = `https://wa.me/${CONTACT_WHATSAPP}?text=${encodeURIComponent("Hola Brian, me interesa conocer más sobre los servicios de ATARAXIA Vero.")}`;
 
   return (
     <a

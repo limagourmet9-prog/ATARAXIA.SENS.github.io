@@ -3,16 +3,14 @@
   "version": "1.0.0",
   "description": "ATARAXIA Vero - La alquimia de la experiencia",
   "private": true,
-  "homepage": "https://marroquin97.github.io/ATARAXIA-SENSORIAL-/",
+  "homepage": ".",
   "scripts": {
-    "install": "cd frontend && yarn install",
-    "start": "cd frontend && yarn start",
-    "build": "cd frontend && yarn build",
-    "deploy": "cd frontend && yarn build && gh-pages -d build"
+    "start": "cd frontend && npm start",
+    "build": "cd frontend && npm run build"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Marroquin97/ATARAXIA-SENSORIAL-.git"
+    "url": "git+https://github.com/limagourmet9-prog/ATARAXIA.SENS.github.io.git"
   },
   "keywords": [
     "ATARAXIA Vero",

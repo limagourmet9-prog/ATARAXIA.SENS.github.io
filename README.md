@@ -1,36 +1,24 @@
-# ATARAXIA Vero - El Loco Sabio
+# ATARAXIA Vero
 
-## 🌐 Sitio Web Oficial
+Sitio preparado para publicar en GitHub Pages.
 
-Visita: **[ataraxia-vero.com](https://marroquin97.github.io/ATARAXIA-SENSORIAL-/)**
+## Publicación
 
----
+La versión actual se despliega desde:
 
-## 🔥 La Alquimia de la Experiencia
+- `https://limagourmet9-prog.github.io/ATARAXIA.SENS.github.io/`
 
-ATARAXIA Vero - Laboratorio de innovación técnica y experiencias sensoriales.
+## Contacto
 
-**Fundado por:** Brian Marroquín Ambriz
+- Correo: `habilidaddm@gmail.com`
+- WhatsApp: `+52 459 116 2796`
 
----
+## Estructura
 
-### 🎯 Nuestras Divisiones
+- `frontend/` contiene la app React que se publica.
+- `.github/workflows/deploy.yml` compila y publica en GitHub Pages.
+- `index.html` en la raíz actúa como redirección simple.
 
-- **ATARAXIA Vero SYSTEMS** - Precision. Structure. Results.
-- **ATARAXIA Vero EXPERIENCE** - Sensation. Emotion. Memory.
-- **ATARAXIA Vero ACADEMY** - Knowledge. Growth. Mastery.
+## Nota
 
----
-
-### 📍 Ubicación
-
-Tacámbaro y Morelia, Michoacán, México
-
-### 📱 Contacto
-
-- WhatsApp: +52 459 116 2796
-- Instagram: [@Marroquin7](https://instagram.com/Marroquin7)
-
----
-
-**© 2024 ATARAXIA Vero. Todos los derechos reservados.**
+El formulario del sitio abre WhatsApp con el mensaje preparado y también el correo para continuar el contacto.
