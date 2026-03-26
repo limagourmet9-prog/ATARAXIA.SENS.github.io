@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://limagourmet9-prog.github.io/ATARAXIA.SENS.github.io/sitemap.xml

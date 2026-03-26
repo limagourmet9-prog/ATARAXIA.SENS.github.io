@@ -292,9 +292,9 @@ const Navigation = () => {
 
   const navLinks = [
     { href: "#inicio", label: "Inicio" },
-    { href: "#divisiones", label: "Divisiones" },
-    { href: "#portafolio", label: "Portafolio" },
-    { href: "#about", label: "Nosotros" },
+    { href: "#manifiesto", label: "Manifiesto" },
+    { href: "#filosofia", label: "Filosofía" },
+    { href: "#proyectos", label: "Proyectos" },
     { href: "#contacto", label: "Contacto" }
   ];
 
@@ -646,7 +646,7 @@ const ManifiestoSection = () => {
   ];
 
   return (
-    <section className="py-24 relative overflow-hidden" data-testid="manifiesto-section">
+    <section id="manifiesto" className="py-24 relative overflow-hidden" data-testid="manifiesto-section">
       {/* Background with alchemical symbol */}
       <div className="absolute inset-0 opacity-5">
         <img 
@@ -716,7 +716,7 @@ const ManifiestoSection = () => {
 // El Loco Sabio - Mito Fundacional Section
 const LocoSabioSection = () => {
   return (
-    <section className="py-24 bg-[#0A0A0A] relative overflow-hidden" data-testid="loco-sabio-section">
+    <section id="loco-sabio" className="py-24 bg-[#0A0A0A] relative overflow-hidden" data-testid="loco-sabio-section">
       {/* Background gradient */}
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-gold/5 to-transparent"></div>
 
@@ -808,7 +808,7 @@ const FilosofiaSection = () => {
   ];
 
   return (
-    <section className="py-24 relative" data-testid="filosofia-section">
+    <section id="filosofia" className="py-24 relative" data-testid="filosofia-section">
       <div className="max-w-7xl mx-auto px-6 lg:px-12">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -903,7 +903,7 @@ const ServiciosSection = () => {
   ];
 
   return (
-    <section className="py-24 bg-[#0A0A0A]" data-testid="servicios-section">
+    <section id="experiencias" className="py-24 bg-[#0A0A0A]" data-testid="servicios-section">
       <div className="max-w-7xl mx-auto px-6 lg:px-12">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -1115,7 +1115,7 @@ const CocktailGallery = () => {
   };
 
   return (
-    <section className="py-24 bg-[#050505] relative overflow-hidden" data-testid="cocktail-gallery">
+    <section id="arte-culinario" className="py-24 bg-[#050505] relative overflow-hidden" data-testid="cocktail-gallery">
       {/* Background decorative elements */}
       <div className="absolute inset-0 opacity-5">
         <div className="absolute top-20 left-10 w-64 h-64 border border-gold rounded-full" />
@@ -1358,7 +1358,7 @@ const PortfolioSection = () => {
     : portfolioItems.filter(item => item.category === activeFilter);
 
   return (
-    <section id="portafolio" className="py-24 bg-[#0A0A0A]" data-testid="portfolio-section">
+    <section id="proyectos" className="py-24 bg-[#0A0A0A]" data-testid="portfolio-section">
       <div className="max-w-7xl mx-auto px-6 lg:px-12">
         {/* Section Header */}
         <motion.div
@@ -1439,7 +1439,7 @@ const PortfolioSection = () => {
 // About Section
 const AboutSection = () => {
   return (
-    <section id="about" className="py-24" data-testid="about-section">
+    <section id="integrar" className="py-24" data-testid="about-section">
       <div className="max-w-7xl mx-auto px-6 lg:px-12">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           {/* Image Side */}
