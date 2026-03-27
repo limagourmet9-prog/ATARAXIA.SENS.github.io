@@ -42,6 +42,97 @@
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
-    <div id="root"></div>
+    <div id="root">
+      <div id="app-fallback">
+        <div class="fallback-shell">
+          <div class="fallback-kicker">Tech Lab</div>
+          <div class="fallback-title">ATARAXIA Vero</div>
+          <div class="fallback-subtitle">el loco sabio</div>
+          <div class="fallback-tagline">La alquimia de la experiencia.</div>
+          <div class="fallback-actions">
+            <a class="fallback-btn" href="https://wa.me/524591162796" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+            <a class="fallback-btn-outline" href="mailto:habilidaddm@gmail.com">Correo</a>
+          </div>
+          <div class="fallback-note">Si ves esta pantalla por mucho tiempo, recarga la página.</div>
+        </div>
+      </div>
+    </div>
+    <style>
+      #app-fallback {
+        min-height: 100vh;
+        background: #050505;
+        color: #EDEDED;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 32px 16px;
+      }
+      .fallback-shell {
+        max-width: 640px;
+        text-align: center;
+        border: 1px solid rgba(212, 175, 55, 0.25);
+        padding: 32px 24px;
+        border-radius: 16px;
+        background: rgba(10, 10, 10, 0.85);
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+      }
+      .fallback-kicker {
+        font-size: 12px;
+        letter-spacing: 0.3em;
+        text-transform: uppercase;
+        color: #D4AF37;
+        margin-bottom: 12px;
+        font-family: "JetBrains Mono", monospace;
+      }
+      .fallback-title {
+        font-size: 38px;
+        font-weight: 800;
+        letter-spacing: 0.02em;
+        color: #F4E5B8;
+        font-family: "Syne", sans-serif;
+      }
+      .fallback-subtitle {
+        font-size: 12px;
+        letter-spacing: 0.28em;
+        text-transform: uppercase;
+        color: rgba(212, 175, 55, 0.6);
+        margin-top: 6px;
+        font-family: "Outfit", sans-serif;
+      }
+      .fallback-tagline {
+        font-size: 18px;
+        color: #D4AF37;
+        margin: 18px 0 24px;
+        font-family: "Outfit", sans-serif;
+      }
+      .fallback-actions {
+        display: flex;
+        gap: 12px;
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+      .fallback-btn,
+      .fallback-btn-outline {
+        padding: 12px 18px;
+        border-radius: 10px;
+        text-decoration: none;
+        font-weight: 600;
+        font-family: "Outfit", sans-serif;
+      }
+      .fallback-btn {
+        background: linear-gradient(135deg, #D4AF37, #F4E5B8);
+        color: #050505;
+      }
+      .fallback-btn-outline {
+        border: 1px solid rgba(212, 175, 55, 0.5);
+        color: #D4AF37;
+      }
+      .fallback-note {
+        margin-top: 18px;
+        font-size: 12px;
+        color: #A1A1AA;
+        font-family: "Outfit", sans-serif;
+      }
+    </style>
   </body>
 </html>
