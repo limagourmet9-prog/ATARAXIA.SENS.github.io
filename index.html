@@ -22,13 +22,16 @@
       --border: rgba(255,255,255,0.08);
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
     body {
       font-family: 'Outfit', sans-serif;
       background: var(--bg);
       color: var(--text);
       -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
     }
     a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
     .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
     .gradient-text {
       background: linear-gradient(135deg, var(--gold) 0%, var(--gold-light) 50%, var(--gold) 100%);
@@ -38,7 +41,7 @@
     }
     .btn {
       display: inline-flex; align-items: center; justify-content: center;
-      padding: 14px 22px; border-radius: 12px; font-weight: 600;
+      padding: 12px 18px; border-radius: 12px; font-weight: 600;
       transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
     }
     .btn-gold {
@@ -60,9 +63,9 @@
     }
     .nav {
       display: flex; align-items: center; justify-content: space-between;
-      height: 68px;
+      height: 68px; gap: 16px;
     }
-    .nav-links { display: flex; gap: 20px; font-size: 14px; color: var(--muted); }
+    .nav-links { display: flex; gap: 18px; font-size: 12px; color: var(--muted); }
     .nav-links a:hover { color: var(--gold); }
 
     .hero {
@@ -71,40 +74,60 @@
       display: flex; align-items: center;
       background: radial-gradient(60% 60% at 50% 20%, rgba(212,175,55,0.12), transparent 60%),
                   linear-gradient(180deg, #050505 0%, #0B0B0B 50%, #050505 100%);
+      overflow: hidden;
     }
-    .hero-inner { text-align: center; padding: 120px 0 80px; }
+    .hero::after {
+      content: "";
+      position: absolute; inset: 0;
+      background-image: radial-gradient(rgba(255,255,255,0.05) 1px, transparent 1px);
+      background-size: 3px 3px; opacity: .25; pointer-events: none;
+    }
+    .hero-inner { text-align: center; padding: 110px 0 80px; position: relative; z-index: 2; }
     .hero-kicker { font-family: 'JetBrains Mono', monospace; letter-spacing: .35em; font-size: 12px; color: var(--gold); }
-    .hero-title { font-family: 'Syne', sans-serif; font-size: 54px; font-weight: 800; margin-top: 16px; }
-    .hero-sub { font-size: 13px; letter-spacing: .28em; text-transform: uppercase; color: rgba(212,175,55,0.6); margin-top: 8px; }
-    .hero-tag { font-size: 20px; color: var(--gold); margin: 18px 0 28px; }
-    .hero-actions { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+    .hero-title { font-family: 'Syne', sans-serif; font-size: 54px; font-weight: 800; margin-top: 14px; }
+    .hero-sub { font-size: 12px; letter-spacing: .28em; text-transform: uppercase; color: rgba(212,175,55,0.6); margin-top: 6px; }
+    .hero-tag { font-size: 18px; color: var(--gold); margin: 16px 0 24px; }
+    .hero-actions { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
 
-    section { padding: 80px 0; border-top: 1px solid var(--border); }
-    .section-label { font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: .25em; color: var(--gold); text-transform: uppercase; }
-    .section-title { font-family: 'Syne', sans-serif; font-size: 34px; margin-top: 12px; }
-    .section-sub { color: var(--muted); margin-top: 12px; }
+    section { padding: 72px 0; border-top: 1px solid var(--border); }
+    .section-label { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: .25em; color: var(--gold); text-transform: uppercase; }
+    .section-title { font-family: 'Syne', sans-serif; font-size: 30px; margin-top: 10px; }
+    .section-sub { color: var(--muted); margin-top: 10px; }
 
-    .grid-2 { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 24px; }
-    .grid-3 { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 20px; }
+    .grid-2 { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 20px; }
+    .grid-3 { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 16px; }
+    .grid-4 { display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap: 16px; }
+
     .card {
       background: var(--bg-2);
       border: 1px solid rgba(212,175,55,0.15);
-      border-radius: 16px; padding: 20px;
+      border-radius: 16px; padding: 18px;
     }
-    .card h3 { font-family: 'Syne', sans-serif; font-size: 20px; color: var(--gold); }
-    .card p { color: var(--muted); margin-top: 10px; font-size: 14px; }
+    .card h3 { font-family: 'Syne', sans-serif; font-size: 18px; color: var(--gold); }
+    .card p { color: var(--muted); margin-top: 8px; font-size: 13px; }
+
+    .image-card {
+      background: var(--bg-3);
+      border: 1px solid rgba(212,175,55,0.15);
+      border-radius: 16px; overflow: hidden;
+    }
+    .image-card img { width: 100%; height: 180px; object-fit: cover; }
+    .image-card .meta { padding: 14px; }
+    .image-card .meta h4 { font-family: 'Syne', sans-serif; font-size: 16px; color: var(--gold); }
+    .image-card .meta p { color: var(--muted); font-size: 12px; margin-top: 6px; }
 
     .stats { display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap: 16px; text-align: center; }
-    .stat-number { font-family: 'Syne', sans-serif; font-size: 36px; color: var(--gold); }
-    .stat-label { color: var(--muted); font-size: 13px; }
+    .stat-number { font-family: 'Syne', sans-serif; font-size: 30px; color: var(--gold); }
+    .stat-label { color: var(--muted); font-size: 12px; }
 
     .cta { text-align: center; }
 
-    footer { padding: 40px 0; color: var(--muted); border-top: 1px solid var(--border); }
+    footer { padding: 36px 0; color: var(--muted); border-top: 1px solid var(--border); font-size: 12px; }
 
     @media (max-width: 900px) {
-      .grid-2, .grid-3, .stats { grid-template-columns: 1fr; }
-      .hero-title { font-size: 42px; }
+      .grid-2, .grid-3, .grid-4, .stats { grid-template-columns: 1fr; }
+      .hero-title { font-size: 40px; }
+      .nav-links { display: none; }
     }
   </style>
 </head>
@@ -120,6 +143,7 @@
         <a href="#filosofia">Filosofía</a>
         <a href="#pilares">Pilares</a>
         <a href="#proyectos">Proyectos</a>
+        <a href="#arte">Arte</a>
         <a href="#contacto">Contacto</a>
       </nav>
     </div>
@@ -133,7 +157,7 @@
         <div class="hero-sub">EL LOCO SABIO</div>
         <div class="hero-tag">La alquimia de la experiencia.</div>
         <div class="hero-actions">
-          <a class="btn btn-gold" href="https://wa.me/524591162796" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+          <a class="btn btn-gold" href="https://wa.me/5214591162796" target="_blank" rel="noopener noreferrer">WhatsApp</a>
           <a class="btn btn-outline" href="mailto:habilidaddm@gmail.com">Correo</a>
           <a class="btn btn-outline" href="#contacto">Iniciar proyecto</a>
         </div>
@@ -152,7 +176,7 @@
       <div class="container">
         <div class="section-label">Las Tres Fuerzas</div>
         <div class="section-title">Filosofía de <span class="gradient-text">ATARAXIA</span></div>
-        <div class="grid-3" style="margin-top:24px;">
+        <div class="grid-3" style="margin-top:20px;">
           <div class="card"><h3>Experiencia Real</h3><p>Aprender haciendo, experimentando y refinando cada detalle.</p></div>
           <div class="card"><h3>Percepción Consciente</h3><p>Los sentidos son herramientas para comprender el mundo.</p></div>
           <div class="card"><h3>Creatividad Aplicada</h3><p>El arte y la técnica se encuentran para crear algo nuevo.</p></div>
@@ -164,7 +188,7 @@
       <div class="container">
         <div class="section-label">Tres Pilares</div>
         <div class="section-title">Tres Pilares, <span class="gradient-text">Una Visión</span></div>
-        <div class="grid-3" style="margin-top:24px;">
+        <div class="grid-3" style="margin-top:20px;">
           <div class="card"><h3>SYSTEMS</h3><p>Soluciones técnicas y digitales con enfoque en eficiencia.</p></div>
           <div class="card"><h3>EXPERIENCE</h3><p>Experiencias sensoriales con impacto emocional y rentabilidad.</p></div>
           <div class="card"><h3>ACADEMY</h3><p>Formación real para el desarrollo profesional.</p></div>
@@ -176,11 +200,32 @@
       <div class="container">
         <div class="section-label">Casos de Impacto</div>
         <div class="section-title">Proyectos <span class="gradient-text">Destacados</span></div>
-        <div class="grid-2" style="margin-top:24px;">
+        <div class="grid-2" style="margin-top:20px;">
           <div class="card"><h3>Mixología conceptual</h3><p>Creación de bebidas y experiencias con narrativa sensorial.</p></div>
           <div class="card"><h3>Arte culinario</h3><p>Propuestas gastronómicas y plating con identidad.</p></div>
           <div class="card"><h3>Consultoría creativa</h3><p>Desarrollo de conceptos para bares y proyectos culturales.</p></div>
           <div class="card"><h3>Formación y talleres</h3><p>Capacitación práctica en mixología y gastronomía.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="arte">
+      <div class="container">
+        <div class="section-label">Arte Culinario</div>
+        <div class="section-title">Creaciones <span class="gradient-text">Destacadas</span></div>
+        <div class="grid-3" style="margin-top:20px;">
+          <div class="image-card">
+            <img src="https://customer-assets.emergentagent.com/job_personal-brand-hub-11/artifacts/up6mt1n1_arlettecuellar7-20260308-0002.jpg" alt="Jardín Esmeralda" />
+            <div class="meta"><h4>Jardín Esmeralda</h4><p>Cóctel de autor con flores comestibles.</p></div>
+          </div>
+          <div class="image-card">
+            <img src="https://customer-assets.emergentagent.com/job_personal-brand-hub-11/artifacts/lzvgr86y_arlettecuellar7-20260308-0001.jpg" alt="Bosque Encantado" />
+            <div class="meta"><h4>Bosque Encantado</h4><p>Presentación con técnica de pinzas y decoración floral.</p></div>
+          </div>
+          <div class="image-card">
+            <img src="https://customer-assets.emergentagent.com/job_personal-brand-hub-11/artifacts/b36ywsto_brian_marroquin7-20260308-0003.jpg" alt="Atardecer en Capas" />
+            <div class="meta"><h4>Atardecer en Capas</h4><p>Shot con técnica de capas.</p></div>
+          </div>
         </div>
       </div>
     </section>
@@ -198,9 +243,9 @@
       <div class="container">
         <div class="section-label">Contacto</div>
         <div class="section-title">Iniciemos Tu <span class="gradient-text">Proyecto</span></div>
-        <div class="section-sub" style="margin-bottom:24px;">¿Listo para transformar tu visión en realidad? Cuéntanos sobre tu proyecto.</div>
+        <div class="section-sub" style="margin-bottom:20px;">¿Listo para transformar tu visión en realidad? Cuéntanos sobre tu proyecto.</div>
         <div class="hero-actions">
-          <a class="btn btn-gold" href="https://wa.me/524591162796" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+          <a class="btn btn-gold" href="https://wa.me/5214591162796" target="_blank" rel="noopener noreferrer">WhatsApp</a>
           <a class="btn btn-outline" href="mailto:habilidaddm@gmail.com">Correo</a>
         </div>
       </div>
@@ -208,9 +253,7 @@
   </main>
 
   <footer>
-    <div class="container">
-      © 2026 ATARAXIA Vero. Tacámbaro y Morelia, Michoacán.
-    </div>
+    <div class="container">© 2026 ATARAXIA Vero. Tacámbaro y Morelia, Michoacán.</div>
   </footer>
 </body>
 </html>
