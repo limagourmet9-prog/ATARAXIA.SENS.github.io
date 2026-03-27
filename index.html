@@ -6,6 +6,15 @@
   <meta name="theme-color" content="#050505" />
   <title>ATARAXIA Vero - El Loco Sabio</title>
   <meta name="description" content="ATARAXIA Vero - La alquimia de la experiencia. Mixología conceptual, experiencias sensoriales y consultoría creativa." />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="ATARAXIA Vero - El Loco Sabio" />
+  <meta property="og:description" content="Mixología conceptual, experiencias sensoriales y consultoría creativa." />
+  <meta property="og:url" content="https://limagourmet9-prog.github.io/ATARAXIA.SENS.github.io/" />
+  <meta property="og:image" content="https://customer-assets.emergentagent.com/job_reverent-mirzakhani-3/artifacts/kh7slglv_1000033858.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="ATARAXIA Vero - El Loco Sabio" />
+  <meta name="twitter:description" content="Mixología conceptual, experiencias sensoriales y consultoría creativa." />
+  <meta name="twitter:image" content="https://customer-assets.emergentagent.com/job_reverent-mirzakhani-3/artifacts/kh7slglv_1000033858.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet" />
@@ -33,6 +42,7 @@
     a { color: inherit; text-decoration: none; }
     img { max-width: 100%; display: block; }
     .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+
     .gradient-text {
       background: linear-gradient(135deg, var(--gold) 0%, var(--gold-light) 50%, var(--gold) 100%);
       -webkit-background-clip: text;
@@ -70,7 +80,7 @@
 
     .hero {
       position: relative;
-      min-height: 80vh;
+      min-height: 85vh;
       display: flex; align-items: center;
       background: radial-gradient(60% 60% at 50% 20%, rgba(212,175,55,0.12), transparent 60%),
                   linear-gradient(180deg, #050505 0%, #0B0B0B 50%, #050505 100%);
@@ -82,12 +92,25 @@
       background-image: radial-gradient(rgba(255,255,255,0.05) 1px, transparent 1px);
       background-size: 3px 3px; opacity: .25; pointer-events: none;
     }
-    .hero-inner { text-align: center; padding: 110px 0 80px; position: relative; z-index: 2; }
+    .hero-logo {
+      position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; opacity: .18;
+      animation: float 8s ease-in-out infinite;
+    }
+    .hero-rings::before, .hero-rings::after {
+      content: ""; position: absolute; border: 1px solid rgba(212,175,55,0.15); border-radius: 999px;
+      animation: spin 40s linear infinite;
+    }
+    .hero-rings::before { width: 520px; height: 520px; }
+    .hero-rings::after { width: 680px; height: 680px; animation-direction: reverse; }
+    .hero-inner { text-align: center; padding: 120px 0 80px; position: relative; z-index: 2; }
     .hero-kicker { font-family: 'JetBrains Mono', monospace; letter-spacing: .35em; font-size: 12px; color: var(--gold); }
-    .hero-title { font-family: 'Syne', sans-serif; font-size: 54px; font-weight: 800; margin-top: 14px; }
+    .hero-title { font-family: 'Syne', sans-serif; font-size: 56px; font-weight: 800; margin-top: 14px; }
     .hero-sub { font-size: 12px; letter-spacing: .28em; text-transform: uppercase; color: rgba(212,175,55,0.6); margin-top: 6px; }
     .hero-tag { font-size: 18px; color: var(--gold); margin: 16px 0 24px; }
     .hero-actions { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
+
+    .marquee { border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); overflow: hidden; padding: 12px 0; }
+    .marquee-track { display: inline-flex; gap: 40px; white-space: nowrap; animation: marquee 20s linear infinite; color: var(--muted); font-size: 12px; }
 
     section { padding: 72px 0; border-top: 1px solid var(--border); }
     .section-label { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: .25em; color: var(--gold); text-transform: uppercase; }
@@ -116,18 +139,36 @@
     .image-card .meta h4 { font-family: 'Syne', sans-serif; font-size: 16px; color: var(--gold); }
     .image-card .meta p { color: var(--muted); font-size: 12px; margin-top: 6px; }
 
+    .loco-sabio {
+      display: grid; grid-template-columns: 1.1fr 1fr; gap: 24px; align-items: center;
+    }
+    .loco-card { background: var(--bg-2); border: 1px solid rgba(212,175,55,0.2); border-radius: 16px; padding: 20px; }
+
     .stats { display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap: 16px; text-align: center; }
     .stat-number { font-family: 'Syne', sans-serif; font-size: 30px; color: var(--gold); }
     .stat-label { color: var(--muted); font-size: 12px; }
 
     .cta { text-align: center; }
 
+    .whatsapp-float {
+      position: fixed; right: 20px; bottom: 20px; width: 56px; height: 56px;
+      border-radius: 999px; background: #25D366; display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 8px 24px rgba(37,211,102,0.4); z-index: 50;
+    }
+
     footer { padding: 36px 0; color: var(--muted); border-top: 1px solid var(--border); font-size: 12px; }
+
+    @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+    @keyframes float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+    @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
 
     @media (max-width: 900px) {
       .grid-2, .grid-3, .grid-4, .stats { grid-template-columns: 1fr; }
       .hero-title { font-size: 40px; }
       .nav-links { display: none; }
+      .loco-sabio { grid-template-columns: 1fr; }
+      .hero-rings::before { width: 340px; height: 340px; }
+      .hero-rings::after { width: 440px; height: 440px; }
     }
   </style>
 </head>
@@ -140,6 +181,7 @@
       </div>
       <nav class="nav-links">
         <a href="#manifiesto">Manifiesto</a>
+        <a href="#loco">El Loco Sabio</a>
         <a href="#filosofia">Filosofía</a>
         <a href="#pilares">Pilares</a>
         <a href="#proyectos">Proyectos</a>
@@ -151,6 +193,10 @@
 
   <main>
     <section class="hero">
+      <div class="hero-logo">
+        <img src="https://customer-assets.emergentagent.com/job_personal-brand-hub-11/artifacts/urh7x0j7_file_000000007034722fb8d8add7522442ce.png" alt="ATARAXIA" style="width:480px;height:480px;object-fit:contain;" />
+        <div class="hero-rings"></div>
+      </div>
       <div class="container hero-inner">
         <div class="hero-kicker">TECH LAB</div>
         <div class="hero-title gradient-text">ATARAXIA Vero</div>
@@ -164,11 +210,50 @@
       </div>
     </section>
 
+    <div class="marquee">
+      <div class="container">
+        <div class="marquee-track">
+          <span>IT & SISTEMAS</span>
+          <span>MIXOLOGÍA</span>
+          <span>DISEÑO</span>
+          <span>CAPACITACIÓN</span>
+          <span>BRANDING</span>
+          <span>GASTRONOMÍA</span>
+          <span>IT & SISTEMAS</span>
+          <span>MIXOLOGÍA</span>
+          <span>DISEÑO</span>
+          <span>CAPACITACIÓN</span>
+          <span>BRANDING</span>
+          <span>GASTRONOMÍA</span>
+        </div>
+      </div>
+    </div>
+
     <section id="manifiesto">
       <div class="container">
         <div class="section-label">Nuestra Filosofía</div>
         <div class="section-title">Manifiesto <span class="gradient-text">ATARAXIA</span></div>
-        <div class="section-sub">Curiosidad, práctica y creatividad aplicada para transformar lo cotidiano en algo significativo.</div>
+        <div class="section-sub" style="margin-top:18px;">
+          Creemos en la curiosidad como motor del conocimiento. Creemos en el arte como una forma de entender el mundo.
+          Creemos que la experiencia directa enseña más que cualquier teoría. ATARAXIA nace del deseo de explorar,
+          experimentar y crear sin miedo a romper lo establecido.
+        </div>
+      </div>
+    </section>
+
+    <section id="loco">
+      <div class="container loco-sabio">
+        <div>
+          <img src="https://customer-assets.emergentagent.com/job_reverent-mirzakhani-3/artifacts/kh7slglv_1000033858.png" alt="El Loco Sabio" />
+        </div>
+        <div class="loco-card">
+          <div class="section-label">El Símbolo</div>
+          <div class="section-title"><span class="gradient-text">El Loco Sabio</span></div>
+          <div class="section-sub" style="margin-top:14px;">
+            El Loco Sabio representa al explorador que aprende directamente de la experiencia. Su locura no es desorden:
+            es curiosidad sin miedo. Su sabiduría no es arrogancia: es comprensión nacida de la práctica.
+          </div>
+        </div>
       </div>
     </section>
 
@@ -251,6 +336,10 @@
       </div>
     </section>
   </main>
+
+  <a class="whatsapp-float" href="https://wa.me/5214591162796" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
+    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg>
+  </a>
 
   <footer>
     <div class="container">© 2026 ATARAXIA Vero. Tacámbaro y Morelia, Michoacán.</div>
