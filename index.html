@@ -99,6 +99,7 @@
       background: url('https://customer-assets.emergentagent.com/job_reverent-mirzakhani-3/artifacts/kh7slglv_1000033858.png') center/contain no-repeat;
       opacity: .2; filter: blur(0.2px);
       mix-blend-mode: screen;
+      animation: heroPulse 14s ease-in-out infinite;
     }
     .hero-logo {
       position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; opacity: .18;
@@ -122,12 +123,56 @@
     .scroll-arrow { display: block; margin: 8px auto 0; width: 18px; height: 18px; border: 1px solid rgba(212,175,55,0.4); border-radius: 999px; position: relative; }
     .scroll-arrow::after { content: ''; position: absolute; width: 6px; height: 6px; border-right: 1px solid var(--gold); border-bottom: 1px solid var(--gold); transform: rotate(45deg); left: 5px; top: 5px; }
 
-    .sparkle { position: absolute; width: 3px; height: 3px; background: var(--gold); border-radius: 999px; opacity: .6; animation: sparkle 6s ease-in-out infinite; }
-    .sparkle.s1 { top: 20%; left: 35%; animation-delay: 0s; }
-    .sparkle.s2 { top: 30%; left: 60%; animation-delay: 1s; }
-    .sparkle.s3 { top: 45%; left: 50%; animation-delay: 2s; }
-    .sparkle.s4 { top: 55%; left: 40%; animation-delay: 3s; }
-    .sparkle.s5 { top: 65%; left: 55%; animation-delay: 4s; }
+    .sparkle-layer {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      z-index: 1;
+      overflow: hidden;
+    }
+    .sparkle {
+      position: absolute;
+      width: 4px;
+      height: 4px;
+      background: radial-gradient(circle, rgba(244,229,184,1) 0%, rgba(212,175,55,0.95) 35%, rgba(212,175,55,0) 100%);
+      border-radius: 999px;
+      opacity: .8;
+      box-shadow: 0 0 10px rgba(212,175,55,0.6), 0 0 18px rgba(212,175,55,0.35);
+      animation: sparkleDrift 9s linear infinite, sparklePulse 2.8s ease-in-out infinite;
+      will-change: transform, opacity;
+    }
+    .sparkle::after {
+      content: "";
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      width: 14px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(244,229,184,0.9), transparent);
+      transform: translate(-50%, -50%);
+      opacity: .7;
+    }
+    .sparkle::before {
+      content: "";
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      width: 1px;
+      height: 14px;
+      background: linear-gradient(180deg, transparent, rgba(244,229,184,0.9), transparent);
+      transform: translate(-50%, -50%);
+      opacity: .7;
+    }
+    .sparkle.s1 { top: 18%; left: 18%; animation-delay: 0s, .1s; }
+    .sparkle.s2 { top: 24%; left: 66%; animation-delay: -1.4s, .4s; }
+    .sparkle.s3 { top: 34%; left: 50%; animation-delay: -2.6s, .8s; }
+    .sparkle.s4 { top: 48%; left: 27%; animation-delay: -3.2s, .2s; }
+    .sparkle.s5 { top: 58%; left: 72%; animation-delay: -4.8s, .9s; }
+    .sparkle.s6 { top: 68%; left: 44%; animation-delay: -2.1s, .3s; }
+    .sparkle.s7 { top: 76%; left: 20%; animation-delay: -5.6s, .6s; }
+    .sparkle.s8 { top: 14%; left: 82%; animation-delay: -6.4s, .5s; }
+    .sparkle.s9 { top: 82%; left: 60%; animation-delay: -7.2s, .7s; }
+    .sparkle.s10 { top: 40%; left: 84%; animation-delay: -4.3s, .25s; }
 
     .marquee { border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); overflow: hidden; padding: 10px 0; }
     .marquee-track { display: inline-flex; gap: 40px; white-space: nowrap; animation: marquee 20s linear infinite; color: var(--muted); font-size: 11px; }
@@ -212,7 +257,21 @@
     @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
     @keyframes float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
     @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
-    @keyframes sparkle { 0%,100% { opacity: .2; transform: translateY(0); } 50% { opacity: .8; transform: translateY(-8px); } }
+    @keyframes sparklePulse {
+      0%, 100% { opacity: .35; transform: scale(.72); }
+      50% { opacity: 1; transform: scale(1.25); }
+    }
+    @keyframes sparkleDrift {
+      0% { transform: translate3d(0, 0, 0); }
+      25% { transform: translate3d(8px, -14px, 0); }
+      50% { transform: translate3d(-6px, -28px, 0); }
+      75% { transform: translate3d(10px, -12px, 0); }
+      100% { transform: translate3d(0, 0, 0); }
+    }
+    @keyframes heroPulse {
+      0%, 100% { transform: scale(1); opacity: .16; }
+      50% { transform: scale(1.06); opacity: .24; }
+    }
 
     @media (max-width: 900px) {
       .grid-2, .grid-3, .stats, .portfolio-grid, .triptych, .about-grid, .contact-grid { grid-template-columns: 1fr; }
@@ -221,6 +280,7 @@
       .loco-sabio { grid-template-columns: 1fr; }
       .hero-rings::before { width: 340px; height: 340px; }
       .hero-rings::after { width: 440px; height: 440px; }
+      .sparkle { width: 5px; height: 5px; }
     }
   </style>
 </head>
@@ -252,7 +312,18 @@
         <img src="https://customer-assets.emergentagent.com/job_personal-brand-hub-11/artifacts/urh7x0j7_file_000000007034722fb8d8add7522442ce.png" alt="ATARAXIA" style="width:480px;height:480px;object-fit:contain;" />
         <div class="hero-rings"></div>
       </div>
-      <span class="sparkle s1"></span><span class="sparkle s2"></span><span class="sparkle s3"></span><span class="sparkle s4"></span><span class="sparkle s5"></span>
+      <div class="sparkle-layer" aria-hidden="true">
+        <span class="sparkle s1"></span>
+        <span class="sparkle s2"></span>
+        <span class="sparkle s3"></span>
+        <span class="sparkle s4"></span>
+        <span class="sparkle s5"></span>
+        <span class="sparkle s6"></span>
+        <span class="sparkle s7"></span>
+        <span class="sparkle s8"></span>
+        <span class="sparkle s9"></span>
+        <span class="sparkle s10"></span>
+      </div>
       <div class="container hero-inner">
         <div class="hero-kicker">TECH LAB</div>
         <div class="hero-title gradient-text">ATARAXIA Vero</div>
