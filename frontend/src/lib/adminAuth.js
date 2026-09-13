@@ -1,11 +1,21 @@
 import { supabase } from "./supabase";
 
+const isAdminUser = (user) => user?.app_metadata?.role === "admin";
+
 /**
- * Auth helpers for the single administrator account.
+ * Admin access helpers.
  * Passwords are handled only by Supabase Auth and are never stored in code.
  */
 export async function signInAdmin(email, password) {
-  return supabase.auth.signInWithPassword({ email, password });
+  const result = await supabase.auth.signInWithPassword({ email, password });
+  if (result.error) return result;
+
+  if (!isAdminUser(result.data.user)) {
+    await supabase.auth.signOut();
+    return { data: { user: null, session: null }, error: new Error("ADMIN_ACCESS_REQUIRED") };
+  }
+
+  return result;
 }
 
 export async function signOutAdmin() {
@@ -14,7 +24,12 @@ export async function signOutAdmin() {
 
 export async function getAdminSession() {
   const { data, error } = await supabase.auth.getSession();
-  return { session: data?.session ?? null, error };
+  const session = data?.session ?? null;
+  if (session && !isAdminUser(session.user)) {
+    await supabase.auth.signOut();
+    return { session: null, error: new Error("ADMIN_ACCESS_REQUIRED") };
+  }
+  return { session, error };
 }
 
 export function onAuthStateChange(callback) {
