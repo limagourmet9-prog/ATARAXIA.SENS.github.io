@@ -1,5 +1,5 @@
 -- ATARAXIA Vero - private feedback foundation
--- Run this script in Supabase SQL Editor after creating the project.
+-- Run in Supabase SQL Editor after creating the project.
 
 create table if not exists public.feedback (
   id uuid primary key default gen_random_uuid(),
@@ -12,20 +12,21 @@ create table if not exists public.feedback (
 
 alter table public.feedback enable row level security;
 
--- Anonymous/public visitors may submit feedback, but cannot read or modify it.
+drop policy if exists "public_can_submit_feedback" on public.feedback;
+drop policy if exists "authenticated_can_read_feedback" on public.feedback;
+drop policy if exists "admin_can_read_feedback" on public.feedback;
+
 create policy "public_can_submit_feedback"
 on public.feedback
 for insert
 to anon, authenticated
 with check (char_length(trim(message)) between 1 and 5000);
 
--- Only the authenticated administrator account is allowed to read feedback.
--- The application will additionally restrict the admin UI to the configured admin identity.
-create policy "authenticated_can_read_feedback"
+create policy "admin_can_read_feedback"
 on public.feedback
 for select
 to authenticated
-using (auth.uid() is not null);
+using ((auth.jwt() -> 'app_metadata' ->> 'role') = 'admin');
 
--- No public UPDATE or DELETE policies are created.
--- Privileged server-side operations, if ever needed, must use a server-only secret.
+-- No UPDATE or DELETE policies are created for the public client.
+-- Keep the Supabase service-role key server-side only if privileged operations are added later.
