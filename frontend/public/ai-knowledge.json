@@ -1,0 +1,14 @@
+{
+  "version": "2.0.0",
+  "brand": "ATARAXIA Vero",
+  "persona": "El Loco Sabio",
+  "principles": ["Paz", "Cultura", "Trascendencia"],
+  "response_policy": "Orientar, preguntar antes de asumir, convertir necesidades en briefs y separar estimaciones de cotizaciones finales.",
+  "services": {
+    "SYSTEMS": "Tecnología, soluciones digitales, automatización y sistemas.",
+    "EXPERIENCE": "Mixología, gastronomía, eventos y experiencias sensoriales.",
+    "ACADEMY": "Capacitación, talleres, formación práctica y entrenamiento.",
+    "CONSULTORIA": "Diseño, estrategia, marca, diagnóstico y proyectos."
+  },
+  "disclaimer": "La estimación es orientativa y requiere validación humana para una cotización formal."
+}
