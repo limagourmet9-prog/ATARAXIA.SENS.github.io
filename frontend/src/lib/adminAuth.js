@@ -1,4 +1,4 @@
-import { supabase } from "./supabase";
+import { getSupabase } from "./supabase";
 
 const isAdminUser = (user) => user?.app_metadata?.role === "admin";
 
@@ -7,6 +7,7 @@ const isAdminUser = (user) => user?.app_metadata?.role === "admin";
  * Passwords are handled only by Supabase Auth and are never stored in code.
  */
 export async function signInAdmin(email, password) {
+  const supabase = getSupabase();
   const result = await supabase.auth.signInWithPassword({ email, password });
   if (result.error) return result;
 
@@ -19,10 +20,11 @@ export async function signInAdmin(email, password) {
 }
 
 export async function signOutAdmin() {
-  return supabase.auth.signOut();
+  return getSupabase().auth.signOut();
 }
 
 export async function getAdminSession() {
+  const supabase = getSupabase();
   const { data, error } = await supabase.auth.getSession();
   const session = data?.session ?? null;
   if (session && !isAdminUser(session.user)) {
@@ -33,5 +35,5 @@ export async function getAdminSession() {
 }
 
 export function onAuthStateChange(callback) {
-  return supabase.auth.onAuthStateChange(callback);
+  return getSupabase().auth.onAuthStateChange(callback);
 }
