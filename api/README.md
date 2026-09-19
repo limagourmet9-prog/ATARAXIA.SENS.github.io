@@ -9,6 +9,7 @@ GitHub Pages cannot execute server-side API routes. The `api/` directory is ther
 - `ATARAXIA_ADMIN_PASSWORD`: strong creator/admin password. Store only in Vercel Environment Variables.
 - `ATARAXIA_SESSION_SECRET`: long random secret used to sign HttpOnly admin sessions.
 - `GITHUB_CONTENTS_TOKEN`: GitHub token with the minimum repository Contents permission required to update `frontend/public/ai-knowledge.json` and `memory/creator-feedback.ndjson`. Store only server-side.
+- `ATARAXIA_ALLOWED_ORIGIN`: exact public origin allowed to call the backend (for example `https://tu-dominio.com`). Admin mutations and AI cross-origin requests are rejected unless the origin matches.
 
 ## Admin
 
@@ -20,4 +21,4 @@ The backend injects the versioned knowledge base into the AI system instructions
 
 ## Deployment
 
-Deploy this repository as a Vercel project. `vercel.json` builds the React frontend from `frontend/` while exposing `api/**/*.js` as serverless functions. The public GitHub Pages deployment remains suitable as a static fallback, but the real-time AI/admin features require the backend URL to be configured as `ATARAXIA_API_BASE` for the frontend if the frontend and API use different origins.
+Deploy this repository as a Vercel project. `vercel.json` builds the React frontend from `frontend/` while exposing `api/**/*.js` as serverless functions. The public GitHub Pages deployment remains suitable as a static fallback, but the real-time AI/admin features require the backend URL to be configured in `frontend/public/ai/config.js` as `apiBase` if the frontend and API use different origins. Keep `ATARAXIA_ALLOWED_ORIGIN` aligned with the public frontend origin.
