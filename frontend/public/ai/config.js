@@ -1,0 +1,1 @@
+window.ATARAXIA_CONFIG={apiBase:""};
