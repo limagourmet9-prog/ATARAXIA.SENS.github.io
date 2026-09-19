@@ -28,11 +28,11 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 20
-          cache: yarn
-          cache-dependency-path: frontend/package.json
+          cache: npm
+          cache-dependency-path: frontend/package-lock.json
 
       - name: Install dependencies
-        run: yarn install --frozen-lockfile=false
+        run: npm install --legacy-peer-deps
 
       - name: Build
-        run: yarn build
+        run: npm run build

@@ -34,16 +34,13 @@ jobs:
         run: npm install --legacy-peer-deps
         working-directory: frontend
 
-      - name: Configure GitHub Pages base path
-        run: sed -i 's#<BrowserRouter>#<BrowserRouter basename="/ATARAXIA.SENS.github.io">#' src/App.js
-        working-directory: frontend
-
       - name: Build
         run: npm run build
         working-directory: frontend
         env:
           CI: false
           GENERATE_SOURCEMAP: false
+          PUBLIC_URL: /ATARAXIA.SENS.github.io
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
