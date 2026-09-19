@@ -123,53 +123,6 @@ const GASTRONOMY_IMAGES = [
   }
 ];
 
-// Registro de diplomas y constancias verificables.
-// Para registrar un diploma emitido en una capacitación, agrega una entrada
-// con el formato: { id: "BM-CURSO-001", titulo: "...", beneficiario: "...",
-//   emisor: "...", anio: "...", estado: "..." }
-const DIPLOMAS = [
-  {
-    id: "BM-TEC-001",
-    titulo: "Técnico en Informática",
-    beneficiario: "Brian Marroquín Ambriz",
-    emisor: "CECyTE SEMSAD 02 Manga de Cuimbo",
-    anio: "2016",
-    estado: "Constancia de conclusión de estudios"
-  },
-  {
-    id: "BM-BAC-001",
-    titulo: "Bachillerato",
-    beneficiario: "Brian Marroquín Ambriz",
-    emisor: "CECyTE SEMSAD 02 Manga de Cuimbo",
-    anio: "2016",
-    estado: "Concluido"
-  },
-  {
-    id: "BM-GAS-001",
-    titulo: "Formación en Gastronomía",
-    beneficiario: "Brian Marroquín Ambriz",
-    emisor: "Colegio culinario Le Club De Cuisine",
-    anio: "2018-2020",
-    estado: "Formación culinaria"
-  },
-  {
-    id: "BM-MIX-001",
-    titulo: "Diplomado en Mixología",
-    beneficiario: "Brian Marroquín Ambriz",
-    emisor: "Colegio de Bartenders (Mane Maldonado)",
-    anio: "2020",
-    estado: "Especialidad concluida"
-  },
-  {
-    id: "BM-REC-001",
-    titulo: "Primer Lugar en Concurso de Mixología",
-    beneficiario: "Brian Marroquín Ambriz",
-    emisor: "Restaurante Tonantzin, Tacámbaro, Michoacán",
-    anio: "—",
-    estado: "Reconocimiento comprobable"
-  }
-];
-
 // Logo URL
 const LOGO_URL = "https://customer-assets.emergentagent.com/job_personal-brand-hub-11/artifacts/urh7x0j7_file_000000007034722fb8d8add7522442ce.png";
 
@@ -1581,13 +1534,13 @@ const AboutSection = () => {
               </div>
             </div>
 
-            <Button
-              className="btn-gold px-6 py-2 font-outfit font-medium"
-              onClick={() => document.getElementById('diplomas').scrollIntoView({ behavior: 'smooth' })}
-              data-testid="verify-diplomas-cta"
+            <a
+              href="./certificados/"
+              className="btn-gold inline-flex items-center justify-center px-6 py-3 font-outfit font-medium rounded-md"
+              data-testid="student-certificates-cta"
             >
-              Verificar diplomas en línea
-            </Button>
+              Certificados de alumnos
+            </a>
             
             {/* Misión y Visión */}
             <div className="grid md:grid-cols-2 gap-6 mt-8">
@@ -1622,134 +1575,6 @@ const AboutSection = () => {
             </div>
           </motion.div>
         </div>
-      </div>
-    </section>
-  );
-};
-
-// Verificación de Diplomas Section
-const DiplomasVerificacion = () => {
-  const [query, setQuery] = useState("");
-  const [result, setResult] = useState(null);
-
-  const handleVerify = () => {
-    const q = query.trim().toUpperCase();
-    if (!q) {
-      setResult({ ok: false, empty: true });
-      return;
-    }
-    const found = DIPLOMAS.find((d) => d.id.toUpperCase() === q);
-    setResult(found ? { ok: true, diploma: found } : { ok: false, id: q });
-  };
-
-  return (
-    <section id="diplomas" className="py-24 bg-[#0A0A0A]" data-testid="diplomas-section">
-      <div className="max-w-7xl mx-auto px-6 lg:px-12">
-        {/* Section Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="section-header text-center"
-        >
-          <span className="section-label">Certificados y Diplomas</span>
-          <h2 className="font-syne text-4xl sm:text-5xl font-bold text-[#EDEDED]">
-            Verificación de <span className="gradient-text">Diplomas</span>
-          </h2>
-          <p className="font-outfit text-[#A1A1AA] mt-4 max-w-2xl mx-auto">
-            Cada diploma y constancia emitido en las capacitaciones de ATARAXIA Vero incluye un identificador único. Escríbelo aquí para confirmar su existencia.
-          </p>
-        </motion.div>
-
-        {/* Validador */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="max-w-2xl mx-auto mt-12"
-        >
-          <div className="glass rounded-xl p-6 gold-glow">
-            <label htmlFor="diploma-id" className="font-mono text-xs text-gold uppercase tracking-wider">
-              Identificador único
-            </label>
-            <div className="flex flex-col sm:flex-row gap-4 mt-3">
-              <Input
-                id="diploma-id"
-                type="text"
-                value={query}
-                onChange={(e) => setQuery(e.target.value)}
-                onKeyDown={(e) => { if (e.key === "Enter") handleVerify(); }}
-                placeholder="Ej. BM-MIX-001"
-                className="flex-1 bg-[#0A0A0A] border-[rgba(255,255,255,0.08)] font-mono uppercase tracking-wider"
-                data-testid="diploma-query"
-              />
-              <Button onClick={handleVerify} className="btn-gold px-8" data-testid="diploma-verify-btn">
-                Verificar
-              </Button>
-            </div>
-            {result && (
-              <div
-                className={`mt-4 rounded-lg border px-4 py-3 font-outfit text-sm ${
-                  result.ok
-                    ? "border-emerald-500/40 bg-emerald-500/10 text-emerald-300"
-                    : "border-red-500/40 bg-red-500/10 text-red-300"
-                }`}
-                data-testid="diploma-result"
-              >
-                {result.ok ? (
-                  <>✔ Diploma válido: <strong>{result.diploma.titulo}</strong> · {result.diploma.beneficiario} · {result.diploma.emisor} ({result.diploma.anio}) · {result.diploma.estado}.</>
-                ) : result.empty ? (
-                  "Escribe un identificador para verificar."
-                ) : (
-                  <>✖ No se encontró ningún diploma con el identificador <strong>{result.id}</strong>. Verifica el ID o contáctanos.</>
-                )}
-              </div>
-            )}
-          </div>
-        </motion.div>
-
-        {/* Registro de diplomas */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="mt-16"
-        >
-          <div className="flex items-center justify-between flex-wrap gap-4 mb-6">
-            <h3 className="font-syne text-2xl font-bold text-[#EDEDED]">Diplomas emitidos</h3>
-            <span className="font-mono text-xs text-gold">{DIPLOMAS.length} registros</span>
-          </div>
-          <div className="overflow-x-auto rounded-xl border border-[rgba(255,255,255,0.08)]">
-            <table className="w-full text-left bg-[#0A0A0A]">
-              <thead>
-                <tr className="border-b border-[rgba(255,255,255,0.08)]">
-                  {["ID Único", "Documento", "Beneficiario", "Emisor", "Año", "Estado"].map((h) => (
-                    <th key={h} className="px-5 py-4 font-mono text-xs text-gold uppercase tracking-wider whitespace-nowrap">
-                      {h}
-                    </th>
-                  ))}
-                </tr>
-              </thead>
-              <tbody>
-                {DIPLOMAS.map((d) => (
-                  <tr key={d.id} className="border-b border-[rgba(255,255,255,0.06)] last:border-0 hover:bg-[#121212] transition-colors">
-                    <td className="px-5 py-4 whitespace-nowrap">
-                      <span className="font-mono text-xs text-gold bg-gold/10 border border-gold/20 rounded px-2 py-1">{d.id}</span>
-                    </td>
-                    <td className="px-5 py-4 font-outfit text-sm text-[#EDEDED] font-medium">{d.titulo}</td>
-                    <td className="px-5 py-4 font-outfit text-sm text-[#A1A1AA]">{d.beneficiario}</td>
-                    <td className="px-5 py-4 font-outfit text-sm text-[#A1A1AA]">{d.emisor}</td>
-                    <td className="px-5 py-4 font-outfit text-sm text-[#A1A1AA] whitespace-nowrap">{d.anio}</td>
-                    <td className="px-5 py-4 font-outfit text-sm text-[#A1A1AA]">{d.estado}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-          <p className="font-outfit text-sm text-[#52525B] mt-4">
-            El registro se actualiza conforme se emiten nuevos diplomas. Si no encuentras un ID, contáctanos antes de considerarlo válido.
-          </p>
-        </motion.div>
       </div>
     </section>
   );
@@ -2285,7 +2110,6 @@ const Home = () => {
       <StatsSection />
       <PortfolioSection />
       <AboutSection />
-      <DiplomasVerificacion />
       <MensajeFinalSection />
       <ContactSection />
       <Footer />
